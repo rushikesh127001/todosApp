@@ -5,23 +5,7 @@ import InputTodo from "./InputTodo"
 import { v4 as uuidv4 } from "uuid";
 class TodoContainer extends React.Component{
     state = {
-        todos: [
-            {
-                id:  uuidv4(),
-                title: "Setup development environment",
-                completed: true
-            },
-            {
-                id:  uuidv4(),
-                title: "Develop website and add content",
-                completed: false
-            },
-            {
-                id:  uuidv4(),
-                title: "Deploy to live server",
-                completed: false
-            }
-        ]
+        todos: []
     };
     handleChanges=(id)=>{
         console.log("click",id)
@@ -79,6 +63,21 @@ class TodoContainer extends React.Component{
                 return todoItem
             })
         })
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.todos!==this.state.todos){
+            const temp = JSON.stringify(this.state.todos)
+            localStorage.setItem("todos",temp)
+        }
+    }
+    componentDidMount() {
+        const localTodos=JSON.parse(localStorage.getItem("todos"))
+
+        if(localTodos){
+            this.setState({
+                todos:localTodos
+            })
+        }
     }
 
     render() {
