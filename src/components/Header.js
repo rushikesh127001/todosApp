@@ -12,11 +12,11 @@ const Header= ()=>{
                 fontWeight: "600",
                 marginBottom: "2rem",
                 lineHeight: "1em",
-                color: "#ececec",
+                color: "#bd5050",
                 textTransform: "lowercase",
                 textAlign: "center",
             }}>
-                todos
+                TODOS
             </h1>
         </header>
     )
